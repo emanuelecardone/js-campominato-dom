@@ -33,6 +33,15 @@ header span{
     box-shadow: none;
     border-color: #b5b5bf;
 }
+.fa-hand-pointer{
+    right: .1rem;
+    bottom: -.5rem;
+    font-size: 1.2rem;
+    transform: rotate(315deg);
+}
+.fa-hand-pointer.click_hand{
+    animation: click_hand .1s linear 1;
+}
 
 
 /* MAIN */
@@ -100,6 +109,19 @@ main{
 }
 .end_game.active{
     display: flex;
+}
+
+
+/* ANIMAZIONI */
+
+/* Animazione hand-pointer */
+@keyframes click_hand{
+    50%{
+        transform: scale(.5) rotate(315deg);
+    }
+    100%{
+        transform: scale(1) rotate(315deg);
+    } 
 }
 
 

@@ -25,14 +25,14 @@ pageHeader.innerHTML = `
                         <option id="medium" value="2">Medium</option>
                         <option id="hard" value="3">Hard</option>
                     </select>
-                    <button type="submit" class="start_button w_85p h_25p d-flex justify-content-center align-items-center p-0 btn my_grey_borders my_grey_bg fw-bold">Play</button>
+                    <button type="submit" class="start_button w_85p h_25p d-flex justify-content-center align-items-center p-0 btn my_grey_borders my_grey_bg fw-bold position-relative">Play<i class="fas fa-hand-pointer position-absolute"></i></button>
                 </div>
             </div>
         </div>
     </div>
 `;
 
-// RIEMPIMENTO MAIN (SOLO GRIGLIA VUOTA E MESSAGGIO INIZIALE)
+// RIEMPIMENTO MAIN (SOLO GRIGLIA VUOTA, MESSAGGIO INIZIALE E ARROWS)
 const pageMain = document.querySelector(`main`);
 pageMain.innerHTML = `
     <div class="game_wrapper d-flex flex-wrap position-relative">
@@ -55,6 +55,8 @@ pageFooter.innerHTML = `
     </div>
 `;
 
+// Variabile hand-pointer
+const clickHand = document.querySelector(`.fa-hand-pointer`);
 
 // Variabile tasto start
 const playButton = document.querySelector('.start_button');
@@ -77,12 +79,16 @@ difficultyChoice.addEventListener('change', function(){
     }
 });
 
+
 // Variabile per contenitore dei box
 const gameContainer = document.querySelector('.game_wrapper');
 
 
 // Evento click per scatenare il tutto 
 playButton.addEventListener('click', function(){
+
+    // Animazione hand-pointer al click
+    clickHand.classList.add('click_hand');
     
     // Inserimento overlay (con display none iniziale ad ogni giro) per il messaggio finale
     gameContainer.innerHTML = `
@@ -110,6 +116,9 @@ playButton.addEventListener('click', function(){
 //
 // return -> questa funzione non ritorna nulla, in quanto scatena semplicemente una serie di eventi
 function fillingGameUp (userDifficulty){
+
+    // Rimozione animazione hand-pointer al click (ritardo che coincide con la sua durata per poterla rendere possibile ad ogni click)
+    setTimeout(function(){clickHand.classList.remove('click_hand');}, 100) 
 
     // Il clicksCounter tiene conto di quanti box "safe" vengono clickati
     let clicksCounter = 0;
