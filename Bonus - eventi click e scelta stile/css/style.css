@@ -49,7 +49,6 @@ header span{
 /* Style for main */
 main{
     height: calc(100vh - 145px);
-    background-color: #7fffd4;
 }
 
 /* Beginning */
@@ -59,11 +58,68 @@ main{
     transform: translate(-50%, -50%);
 }
 
+/* Colors slider title */
+.colors_slider_title{
+    top: calc(50% - 180px);
+    font-size: 15px;
+}
+
+/* Arrows*/
+.fa-arrow-circle-left{
+    left: calc(50% - 200px);
+    cursor: pointer;
+}
+.fa-arrow-circle-right{
+    right: calc(50% - 200px);
+    cursor: pointer;
+}
+
+/* Styles by slider */
+main.slider_green{
+    background-color: #7fffd4;
+    color: black;
+}
+.game_wrapper.slider_green,
+.box.slider_green{
+    border: 1.5px solid black;
+}
+main.slider_blue{
+    background-color: darkblue;
+    color: white;
+}
+.game_wrapper.slider_blue,
+.box.slider_blue{
+    border: 1.5px solid white;
+}
+main.slider_purple{
+    background-color: purple;
+    color: #dda9d7;
+}
+.game_wrapper.slider_purple,
+.box.slider_purple{
+    border: 1.5px solid #dda9d7;
+}
+main.slider_black{
+    background-color: black;
+    color: cyan;
+}
+.game_wrapper.slider_black,
+.box.slider_black{
+    border: 1.5px solid cyan;
+}
+main.slider_coral{
+    background-color: coral;
+    color: #4c6910;
+}
+.game_wrapper.slider_coral,
+.box.slider_coral{
+    border: 1.5px solid #4c6910;
+}
+
 /* Game wrapper */
 .game_wrapper{
     width: 300px;
     height: 300px;
-    border: 1.5px solid black;
 }
 .game_wrapper.borders_fix{
     border: none;
@@ -85,7 +141,6 @@ main{
 
 /* About boxes */
 .box{
-    border: 1.5px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,7 +200,9 @@ main{
         font-size: 30px;
     }
 }
-/* Fix per il wrapper del gioco */
+
+
+/* Fix per il wrapper del gioco, slider title e arrows*/
 @media screen and (min-width: 576px) and (min-height: 726px){
     .game_wrapper{
         width: 450px;
@@ -154,6 +211,16 @@ main{
     .end_game{
         width: 450px;
         height: 450px;
+    }
+    .fa-arrow-circle-left{
+        left: calc(50% - 275px);
+    }
+    .fa-arrow-circle-right{
+        right: calc(50% - 275px);
+    }
+    .colors_slider_title{
+        top: calc(50% - 265px);
+        font-size: 25px;
     }
 }
 @media screen and (min-width: 768px) and (min-height: 918px){
@@ -165,4 +232,15 @@ main{
         width: 600px;
         height: 600px;
     }
+    .fa-arrow-circle-left{
+        left: calc(50% - 350px);
+    }
+    .fa-arrow-circle-right{
+        right: calc(50% - 350px);
+    }
+    .colors_slider_title{
+        top: calc(50% - 360px);
+        font-size: 35px;
+    }
 }
+

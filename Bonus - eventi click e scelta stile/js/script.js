@@ -35,9 +35,12 @@ pageHeader.innerHTML = `
 // RIEMPIMENTO MAIN (SOLO GRIGLIA VUOTA, MESSAGGIO INIZIALE E ARROWS)
 const pageMain = document.querySelector(`main`);
 pageMain.innerHTML = `
-    <div class="game_wrapper d-flex flex-wrap position-relative">
+    <h3 class="colors_slider_title text-center fw-bolder position-absolute">Change colors anytime you want</h3>
+    <i class="fas fa-arrow-circle-left position-absolute fs-3"></i>
+    <div class="game_wrapper d-flex flex-wrap position-relative slider_green">
         <h2 class="start_title fs-1 fw-bold text-center mb-0 position-absolute">Welcome!</h2>
     </div>
+    <i class="fas fa-arrow-circle-right position-absolute fs-3"></i>
 `;
 
 
@@ -57,6 +60,105 @@ pageFooter.innerHTML = `
 
 // Variabile hand-pointer
 const clickHand = document.querySelector(`.fa-hand-pointer`);
+
+// Variabili arrows
+const leftArrow = document.querySelector(`.fa-arrow-circle-left`);
+const rightArrow = document.querySelector(`.fa-arrow-circle-right`);
+
+// Variabile per contenitore dei box
+const gameContainer = document.querySelector('.game_wrapper');
+
+// Numero di colori disponibili
+const colorsAmount = 5;
+// Conteggio dei click per il reset alla fine
+let sliderClicks = 0;
+// Evento click left-arrow
+leftArrow.addEventListener('click', function(){
+
+    // Il conteggio aumenta ma si resetta all'ultimo
+    if(sliderClicks > 0){
+        sliderClicks--;
+    } else{
+        sliderClicks = colorsAmount - 1;
+    }
+    
+    // Assegno un colore come span per ogni click
+    let sliderColor;
+    console.log(sliderClicks);
+    switch(sliderClicks){
+        case 0:
+            sliderPrevColor = `blue`;
+            sliderColor = `green`;
+            break;
+        case 1:
+            sliderPrevColor = `purple`;
+            sliderColor = `blue`;
+            break;
+        case 2:
+            sliderPrevColor = `black`;
+            sliderColor = `purple`;
+            break;
+        case 3:
+            sliderPrevColor = `coral`;
+            sliderColor = `black`;
+            break;
+        case 4:
+            sliderPrevColor = `green`;
+            sliderColor = `coral`;
+            break;            
+    }
+    
+    // Assegno la classe del colore successivo
+    pageMain.classList.add(`slider_${sliderColor}`);
+    gameContainer.classList.add(`slider_${sliderColor}`);
+
+    // Rimuovo la classe del colore precedente
+    pageMain.classList.remove(`slider_${sliderPrevColor}`);
+    gameContainer.classList.remove(`slider_${sliderPrevColor}`);
+    
+});
+// Evento click right-arrow
+rightArrow.addEventListener('click', function(){
+    // Il conteggio aumenta ma si resetta all'ultimo
+    if(sliderClicks < colorsAmount - 1){
+        sliderClicks++;
+    } else{
+        sliderClicks = 0;
+    }
+    
+    // Assegno un colore come span per ogni click
+    let sliderColor;
+    console.log(sliderClicks);
+    switch(sliderClicks){
+        case 0:
+            sliderPrevColor = `coral`;
+            sliderColor = `green`;
+            break;
+        case 1:
+            sliderPrevColor = `green`;
+            sliderColor = `blue`;
+            break;
+        case 2:
+            sliderPrevColor = `blue`;
+            sliderColor = `purple`;
+            break;
+        case 3:
+            sliderPrevColor = `purple`;
+            sliderColor = `black`;
+            break;
+        case 4:
+            sliderPrevColor = `black`;
+            sliderColor = `coral`;
+            break;            
+    }
+    
+    // Assegno la classe del colore successivo
+    pageMain.classList.add(`slider_${sliderColor}`);
+    gameContainer.classList.add(`slider_${sliderColor}`);
+    // Rimuovo la classe del colore precedente
+    pageMain.classList.remove(`slider_${sliderPrevColor}`);
+    gameContainer.classList.remove(`slider_${sliderPrevColor}`);
+});
 
 // Variabile tasto start
 const playButton = document.querySelector('.start_button');
@@ -78,11 +180,6 @@ difficultyChoice.addEventListener('change', function(){
             break;
     }
 });
-
-
-// Variabile per contenitore dei box
-const gameContainer = document.querySelector('.game_wrapper');
-
 
 // Evento click per scatenare il tutto 
 playButton.addEventListener('click', function(){
@@ -146,15 +243,16 @@ function fillingGameUp (userDifficulty){
     // Impostazione della grandezza dei box in base alla classe "easy", "medium" o "hard"
     for(let i = 0; i < numberOfBoxes; i++){
         currentBox = document.createElement('div');
+        currentBox.classList.add('box', 'slider_green');
         switch(numberOfBoxes){
             case 100:
-                currentBox.classList.add('easy', 'box');
+                currentBox.classList.add('easy');
                 break;
             case 81:
-                currentBox.classList.add('medium', 'box');
+                currentBox.classList.add('medium');
                 break;
             case 49:
-                currentBox.classList.add('hard', 'box');
+                currentBox.classList.add('hard');
                 break;
         }
         // Inserimento box
