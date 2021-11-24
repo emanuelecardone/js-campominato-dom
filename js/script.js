@@ -139,8 +139,11 @@ function fillingGameUp (userDifficulty){
     const deadlyNumbersList = deadlyNumbers(numberOfBoxes, bombsQuantity);
     console.log(deadlyNumbersList);
 
-    // Matrice per confrontare ogni testo di ogni box con ogni numero "deadly"
-    // Se clicko un numero uguale tra box e numero "deadly", gli assegna la classe "deadly" e diventa quindi rosso
+    // Matrice 
+    // Ciclo "i": Ciclo principale, percorre ogni singolo box di gioco
+    // Ciclo "j": Ciclo dei numeri "deadly", confronta ogni numero "deadly" con ogni box di gioco
+    // Se il ciclo "j" trova un box corrispondende, attivo l'evento del click
+    // Ciclo "k": Ciclo necessario per passare la classe "deadly" a tutti i box con numeri "deadly" al click di uno di loro
     for(let i = 0; i < numberOfBoxes; i++){
         for(let j = 0; j < deadlyNumbersList.length; j++){
             if(parseInt(document.getElementsByClassName('box')[i].innerText) === deadlyNumbersList[j]){
