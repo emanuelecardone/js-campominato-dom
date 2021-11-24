@@ -184,7 +184,7 @@ function fillingGameUp (userDifficulty){
     //
     // Ciclo "i": Ciclo principale, percorre ogni singolo box di gioco
     // Ciclo "j": Ciclo dei numeri "deadly", confronta ogni numero "deadly" con ogni box di gioco
-    // Se il ciclo "j" trova un box corrispondende, attivo l'evento del click
+    // Se il ciclo "j" trova un box corrispondende, gli assegno l'evento del click
     // Ciclo "l": Debug, se il gioco finisce perché si clicka un "deadly", gli altri non saranno più clickabili
     // Ciclo "k": Ciclo necessario per passare la classe "deadly" (colore rosso) a tutti i box con numeri "deadly" al click di uno di loro
     for(let i = 0; i < numberOfBoxes; i++){
@@ -231,7 +231,7 @@ function makeThemBlue() {
     this.classList.add('safe');
 }
 
-// Funzione per generare un arrai di numeri diversi tra loro
+// Funzione per generare un array di numeri diversi tra loro
 //
 // userDifficulty -> difficoltà scelta dall'utente. Determinante per capire quanti numeri devo generare
 //
