@@ -144,8 +144,11 @@ function fillingGameUp (userDifficulty){
     for(let i = 0; i < numberOfBoxes; i++){
         for(let j = 0; j < deadlyNumbersList.length; j++){
             if(parseInt(document.getElementsByClassName('box')[i].innerText) === deadlyNumbersList[j]){
+                document.getElementsByClassName('box')[i].classList.add('wrong_box')
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
-                    document.getElementsByClassName('box')[i].classList.add('deadly');
+                    for(let k = 0; k < deadlyNumbersList.length; k++){
+                        document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
+                    }
                 });
             }
         }
