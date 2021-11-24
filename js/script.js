@@ -87,8 +87,10 @@ const gameContainer = document.querySelector('.game_wrapper');
 playButton.addEventListener('click', function(){
     gameContainer.innerHTML = '';
     gameContainer.innerHTML += `
-        <div class="end_game justify-content-center align-items-center">
+        <div class="end_game flex-column justify-content-center align-items-center">
             <h2 class="final_message text-white"></h2>
+            <span class="text-white fs-4">Your score:</span>
+            <span class="final_message_score text-white fs-4">2</span>
         </div>
     `;
     gameContainer.classList.add('borders_fix');    
@@ -106,6 +108,8 @@ playButton.addEventListener('click', function(){
 //
 // return -> questa funzione non ritorna nulla, in quanto scatena semplicemente una serie di eventi
 function fillingGameUp (userDifficulty){
+
+    let clicksCounter = 0;
 
     let numberOfBoxes;
     switch(userDifficulty){
@@ -137,7 +141,12 @@ function fillingGameUp (userDifficulty){
         }
         gameContainer.appendChild(currentBox);
         currentBox.innerHTML = numbersToUse[i];
-        currentBox.addEventListener('click', makeThemBlue);   
+        currentBox.addEventListener('click', makeThemBlue);
+        currentBox.addEventListener('click', function(){
+            clicksCounter++;
+            console.log(clicksCounter);
+            this.style.pointerEvents = "none";
+        });   
     }
 
     const bombsQuantity = 16;
@@ -158,7 +167,7 @@ function fillingGameUp (userDifficulty){
                 document.getElementsByClassName('box')[i].classList.add('wrong_box')
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
                     document.querySelector(`.end_game`).classList.add('active');
-                    document.querySelector(`.final_message`).innerHTML = `Game Over!`
+                    document.querySelector(`.final_message`).innerHTML = `Game Over!`;
                     for(let k = 0; k < deadlyNumbersList.length; k++){
                         document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
                     }
