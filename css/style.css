@@ -61,7 +61,7 @@ main{
     align-items: center;
     cursor: pointer;
 }
-.box.active{
+.box.safe{
     background-color: #6495ed;
 }
 .box.deadly{

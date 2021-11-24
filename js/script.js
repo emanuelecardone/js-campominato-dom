@@ -152,13 +152,13 @@ function fillingGameUp (userDifficulty){
     }
 }
 
-// Funzione per assegnare la classe active ai box
+// Funzione per assegnare la classe safe ai box
 //
 // -> non ci sono argomenti in entrata
 //
 // -> non c'è return, questa funzione scatena semplicemente un evento
 function makeThemBlue() {
-    this.classList.add('active');
+    this.classList.add('safe');
 }
 
 // Funzione per generare un arrai di numeri diversi tra loro
