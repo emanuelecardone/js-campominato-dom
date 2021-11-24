@@ -167,6 +167,10 @@ function fillingGameUp (userDifficulty){
                     // Rimozione a tutti i box della possibilità di essere clickati al game won (anche l'overlay lo impedirebbe)
                     document.getElementsByClassName('box')[j].style.pointerEvents = "none";
                 }
+                // Ciclo che colora di rosso tutti i box "deadly" al game won (grazie alla classe wrong_box di prima)
+                for(let l = 0; l < deadlyNumbersList.length; l++){
+                    document.getElementsByClassName('wrong_box')[l].classList.add('deadly');
+                }
                 // Inserimento messaggio finale di vittoria con relativo score
                 document.querySelector(`.end_game`).classList.add('active');
                 document.querySelector(`.final_message`).innerHTML = `You Won!`;
