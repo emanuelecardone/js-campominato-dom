@@ -32,11 +32,11 @@ pageHeader.innerHTML = `
     </div>
 `;
 
-// RIEMPIMENTO MAIN (SOLO GRIGLIA VUOTA)
+// RIEMPIMENTO MAIN (SOLO GRIGLIA VUOTA E MESSAGGIO INIZIALE)
 const pageMain = document.querySelector(`main`);
 pageMain.innerHTML = `
-    <div class="game_wrapper d-flex flex-wrap">
-        
+    <div class="game_wrapper d-flex flex-wrap position-relative">
+        <h2 class="start_title fs-1 fw-bold text-center mb-0 position-absolute">Welcome!</h2>
     </div>
 `;
 
@@ -95,7 +95,7 @@ playButton.addEventListener('click', function(){
 
     // Rimuovo i bordi dal container principale al click per fixare lo spazietto che si crea tra i suoi e quelli dei box
     gameContainer.classList.add('borders_fix'); 
-       
+
     // Richiamo alla funzione principale che contiene tutto il macro funzionamento del gioco
     fillingGameUp(userDifficultyChoice);
 });
@@ -162,6 +162,11 @@ function fillingGameUp (userDifficulty){
             this.style.pointerEvents = "none";
             // Condizione per la vittoria
             if(clicksCounter === numberOfBoxes - bombsQuantity){
+                for(let j = 0; j < numberOfBoxes; j++){
+
+                    // Rimozione a tutti i box della possibilità di essere clickati al game won (anche l'overlay lo impedirebbe)
+                    document.getElementsByClassName('box')[j].style.pointerEvents = "none";
+                }
                 // Inserimento messaggio finale di vittoria con relativo score
                 document.querySelector(`.end_game`).classList.add('active');
                 document.querySelector(`.final_message`).innerHTML = `You Won!`;
@@ -180,7 +185,8 @@ function fillingGameUp (userDifficulty){
     // Ciclo "i": Ciclo principale, percorre ogni singolo box di gioco
     // Ciclo "j": Ciclo dei numeri "deadly", confronta ogni numero "deadly" con ogni box di gioco
     // Se il ciclo "j" trova un box corrispondende, attivo l'evento del click
-    // Ciclo "k": Ciclo necessario per passare la classe "deadly" a tutti i box con numeri "deadly" al click di uno di loro
+    // Ciclo "l": Debug, se il gioco finisce perché si clicka un "deadly", gli altri non saranno più clickabili
+    // Ciclo "k": Ciclo necessario per passare la classe "deadly" (colore rosso) a tutti i box con numeri "deadly" al click di uno di loro
     for(let i = 0; i < numberOfBoxes; i++){
 
         for(let j = 0; j < deadlyNumbersList.length; j++){
@@ -192,6 +198,11 @@ function fillingGameUp (userDifficulty){
                 document.getElementsByClassName('box')[i].classList.add('wrong_box')
                 // Evento click sui box "deadly"
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
+
+                    for(let l = 0; l < numberOfBoxes; l++){
+                        // Rimozione a tutti i box della possibilità di essere clickati al game over (anche l'overlay lo impedirebbe)
+                        document.getElementsByClassName('box')[l].style.pointerEvents = "none";
+                    }
 
                     // Debug clicksCounter (ogni box cliccato aumenta il counter di 1, con questo debug se si clicka un "deadly" farà +1 e -1)
                     // Debug messo per risparmiare la creazione di un array contenente i "safe" clickati

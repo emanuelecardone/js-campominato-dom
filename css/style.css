@@ -7,14 +7,18 @@
     border: 1.5px solid #b5b5bf;
 }
 
+
 /* HEADER */
 
-.select_wrapper{
-    gap: .5rem;
-}
+/* Header text */
 header h1,
 header span{
     display: none;
+}
+
+/* Select zone */
+.select_wrapper{
+    gap: .5rem;
 }
 .start_button{
     font-size: .875rem;
@@ -33,10 +37,20 @@ header span{
 
 /* MAIN */
 
+/* Style for main */
 main{
     height: calc(100vh - 145px);
     background-color: #7fffd4;
 }
+
+/* Beginning */
+.start_title{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Game wrapper */
 .game_wrapper{
     width: 300px;
     height: 300px;
@@ -45,6 +59,8 @@ main{
 .game_wrapper.borders_fix{
     border: none;
 }
+
+/* Width style (based on difficulty) */
 .easy{
     width: calc(10%);
     height: calc(10%);
@@ -57,6 +73,8 @@ main{
     width: calc(100% / 7);
     height: calc(100% / 7);
 }
+
+/* About boxes */
 .box{
     border: 1.5px solid black;
     display: flex;
@@ -70,6 +88,8 @@ main{
 .box.deadly{
     background-color: red;
 }
+
+/* End game */
 .end_game{
     display: none;
     width: 300px;
@@ -81,8 +101,6 @@ main{
 .end_game.active{
     display: flex;
 }
-
-/* FOOTER */
 
 
 /* MEDIA */
