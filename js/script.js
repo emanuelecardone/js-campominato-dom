@@ -81,21 +81,23 @@ difficultyChoice.addEventListener('change', function(){
 const gameContainer = document.querySelector('.game_wrapper');
 
 
-// Evento click per scatenare il tutto
-// Up: rimuovo i bordi dal container principale al click, 
-// per fixare lo spazietto che si crea tra i suoi e quelli dei box
+// Evento click per scatenare il tutto 
 playButton.addEventListener('click', function(){
-    gameContainer.innerHTML = '';
-    gameContainer.innerHTML += `
+    
+    // Inserimento overlay (con display none iniziale ad ogni giro) per il messaggio finale
+    gameContainer.innerHTML = `
         <div class="end_game flex-column justify-content-center align-items-center">
             <h2 class="final_message text-white"></h2>
             <span class="text-white fs-4">Your score:</span>
             <span class="final_message_score text-white fs-4"></span>
         </div>
     `;
-    gameContainer.classList.add('borders_fix');    
+
+    // Rimuovo i bordi dal container principale al click per fixare lo spazietto che si crea tra i suoi e quelli dei box
+    gameContainer.classList.add('borders_fix'); 
+       
+    // Richiamo alla funzione principale che contiene tutto il macro funzionamento del gioco
     fillingGameUp(userDifficultyChoice);
-    
 });
 
 
@@ -109,9 +111,13 @@ playButton.addEventListener('click', function(){
 // return -> questa funzione non ritorna nulla, in quanto scatena semplicemente una serie di eventi
 function fillingGameUp (userDifficulty){
 
+    // Il clicksCounter tiene conto di quanti box "safe" vengono clickati
     let clicksCounter = 0;
+
+    // Quantità prestabilita di box "deadly"
     const bombsQuantity = 16;
-    
+
+    // Decisione numero di box in base alla difficoltà
     let numberOfBoxes;
     switch(userDifficulty){
         case `easy`:
@@ -125,8 +131,10 @@ function fillingGameUp (userDifficulty){
             break;
     }
 
+    // Richiamo alla funzione che mi da i numeri da inserire nei box
     const numbersToUse = fillingBoxesUp(userDifficulty);
 
+    // Impostazione della grandezza dei box in base alla classe "easy", "medium" o "hard"
     for(let i = 0; i < numberOfBoxes; i++){
         currentBox = document.createElement('div');
         switch(numberOfBoxes){
@@ -140,14 +148,21 @@ function fillingGameUp (userDifficulty){
                 currentBox.classList.add('hard', 'box');
                 break;
         }
+        // Inserimento box
         gameContainer.appendChild(currentBox);
+        // Inserimento numeri nei box
         currentBox.innerHTML = numbersToUse[i];
+        // Evento click per i box "safe"
         currentBox.addEventListener('click', makeThemBlue);
+        // Evento click generico
         currentBox.addEventListener('click', function(){
+            // Aumenta il contatore dei click "safe"
             clicksCounter++;
-            console.log(clicksCounter);
+            // Debug per non aumentare il counter se clicko più volte lo stesso box
             this.style.pointerEvents = "none";
+            // Condizione per la vittoria
             if(clicksCounter === numberOfBoxes - bombsQuantity){
+                // Inserimento messaggio finale di vittoria con relativo score
                 document.querySelector(`.end_game`).classList.add('active');
                 document.querySelector(`.final_message`).innerHTML = `You Won!`;
                 document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
@@ -167,17 +182,29 @@ function fillingGameUp (userDifficulty){
     // Se il ciclo "j" trova un box corrispondende, attivo l'evento del click
     // Ciclo "k": Ciclo necessario per passare la classe "deadly" a tutti i box con numeri "deadly" al click di uno di loro
     for(let i = 0; i < numberOfBoxes; i++){
+
         for(let j = 0; j < deadlyNumbersList.length; j++){
+
+            // Se il contenuto convertito in numero di un box corrisponde con un numero "deadly"...
             if(parseInt(document.getElementsByClassName('box')[i].innerText) === deadlyNumbersList[j]){
+
+                // ...Gli do una classe wrong_box che mi servirà dopo per far diventare rossi tutti i "deadly" al click di uno di loro
                 document.getElementsByClassName('box')[i].classList.add('wrong_box')
+                // Evento click sui box "deadly"
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
+
+                    // Debug clicksCounter (ogni box cliccato aumenta il counter di 1, con questo debug se si clicka un "deadly" farà +1 e -1)
+                    // Debug messo per risparmiare la creazione di un array contenente i "safe" clickati
                     clicksCounter--;
-                    document.querySelector(`.end_game`).classList.add('active');
-                    document.querySelector(`.final_message`).innerHTML = `Game Over!`;
-                    document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
+                    // Ciclo che colora di rosso tutti i box "deadly" al click di uno di loro (grazie alla classe wrong_box di prima)
                     for(let k = 0; k < deadlyNumbersList.length; k++){
                         document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
                     }
+                    // Comparsa overlay e titolo finale
+                    document.querySelector(`.end_game`).classList.add('active');
+                    document.querySelector(`.final_message`).innerHTML = `Game Over!`;
+                    document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
+    
                 });
             }
         }
