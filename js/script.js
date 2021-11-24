@@ -90,7 +90,7 @@ playButton.addEventListener('click', function(){
         <div class="end_game flex-column justify-content-center align-items-center">
             <h2 class="final_message text-white"></h2>
             <span class="text-white fs-4">Your score:</span>
-            <span class="final_message_score text-white fs-4">2</span>
+            <span class="final_message_score text-white fs-4"></span>
         </div>
     `;
     gameContainer.classList.add('borders_fix');    
@@ -168,6 +168,7 @@ function fillingGameUp (userDifficulty){
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
                     document.querySelector(`.end_game`).classList.add('active');
                     document.querySelector(`.final_message`).innerHTML = `Game Over!`;
+                    document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
                     for(let k = 0; k < deadlyNumbersList.length; k++){
                         document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
                     }
