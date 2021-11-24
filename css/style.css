@@ -1,0 +1,99 @@
+/* COMMON */
+.my_grey_bg{
+    background-color: #e9e9ed;
+}
+.my_grey_borders{
+    border: 1.5px solid #b5b5bf;
+}
+
+/* HEADER */
+.select_wrapper{
+    gap: .5rem;
+}
+header h1,
+header span{
+    display: none;
+}
+.start_button{
+    font-size: .875rem;
+}
+.start_button:focus{
+    box-shadow: none;
+}
+.form-select{
+    width: 100px;
+}
+.form-select:focus{
+    box-shadow: none;
+    border-color: #b5b5bf;
+}
+
+
+/* MAIN */
+main{
+    height: calc(100vh - 145px);
+    background-color: #7fffd4;
+}
+.game_wrapper{
+    width: 300px;
+    height: 300px;
+    border: 1.5px solid black;
+}
+.game_wrapper.borders_fix{
+    border: none;
+}
+.easy{
+    width: calc(10%);
+    height: calc(10%);
+}
+.medium{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+.hard{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+.box{
+    border: 1.5px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.box.active{
+    background-color: #6495ed;
+}
+.box.deadly{
+    background-color: red;
+}
+
+/* FOOTER */
+
+
+/* MEDIA */
+/* Fix per l'header */
+@media screen and (min-width: 768px){
+    header h1,
+    header span{
+        display: block;
+    }
+    .form-select{
+        width: 200px;
+    }
+    header h1{
+        font-size: 20px;
+    }
+}
+@media screen and (min-width: 992px){
+    header h1{
+        font-size: 30px;
+    }
+}
+/* Fix per il wrapper del gioco */
+@media screen and (min-height: 750px){
+    .game_wrapper{
+        width: 600px;
+        height: 600px;
+    }
+}
