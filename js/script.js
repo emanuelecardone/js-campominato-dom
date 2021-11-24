@@ -110,6 +110,7 @@ playButton.addEventListener('click', function(){
 function fillingGameUp (userDifficulty){
 
     let clicksCounter = 0;
+    const bombsQuantity = 16;
     
     let numberOfBoxes;
     switch(userDifficulty){
@@ -143,14 +144,17 @@ function fillingGameUp (userDifficulty){
         currentBox.innerHTML = numbersToUse[i];
         currentBox.addEventListener('click', makeThemBlue);
         currentBox.addEventListener('click', function(){
-
             clicksCounter++;
             console.log(clicksCounter);
             this.style.pointerEvents = "none";
+            if(clicksCounter === numberOfBoxes - bombsQuantity){
+                document.querySelector(`.end_game`).classList.add('active');
+                document.querySelector(`.final_message`).innerHTML = `You Won!`;
+                document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
+            }
         });   
     }
 
-    const bombsQuantity = 16;
 
     // Array contenente i numeri deadly che mi ritorna dalla funzione
     const deadlyNumbersList = deadlyNumbers(numberOfBoxes, bombsQuantity);
