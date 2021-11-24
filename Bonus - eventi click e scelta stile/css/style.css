@@ -80,7 +80,7 @@ main.slider_green{
     color: black;
 }
 .game_wrapper.slider_green,
-.box.slider_green{
+main.slider_green .box{
     border: 1.5px solid black;
 }
 main.slider_blue{
@@ -88,7 +88,7 @@ main.slider_blue{
     color: white;
 }
 .game_wrapper.slider_blue,
-.box.slider_blue{
+main.slider_blue .box{
     border: 1.5px solid white;
 }
 main.slider_purple{
@@ -96,7 +96,7 @@ main.slider_purple{
     color: #dda9d7;
 }
 .game_wrapper.slider_purple,
-.box.slider_purple{
+main.slider_purple .box{
     border: 1.5px solid #dda9d7;
 }
 main.slider_black{
@@ -104,7 +104,7 @@ main.slider_black{
     color: cyan;
 }
 .game_wrapper.slider_black,
-.box.slider_black{
+main.slider_black .box{
     border: 1.5px solid cyan;
 }
 main.slider_coral{
@@ -112,7 +112,7 @@ main.slider_coral{
     color: #4c6910;
 }
 .game_wrapper.slider_coral,
-.box.slider_coral{
+main.slider_coral .box{
     border: 1.5px solid #4c6910;
 }
 
