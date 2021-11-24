@@ -36,9 +36,10 @@ pageHeader.innerHTML = `
 const pageMain = document.querySelector(`main`);
 pageMain.innerHTML = `
     <div class="game_wrapper d-flex flex-wrap">
-
+        
     </div>
 `;
+
 
 // RIEMPIMENTO FOOTER
 const pageFooter = document.querySelector(`footer`);
@@ -79,11 +80,17 @@ difficultyChoice.addEventListener('change', function(){
 // Variabile per contenitore dei box
 const gameContainer = document.querySelector('.game_wrapper');
 
+
 // Evento click per scatenare il tutto
 // Up: rimuovo i bordi dal container principale al click, 
 // per fixare lo spazietto che si crea tra i suoi e quelli dei box
 playButton.addEventListener('click', function(){
     gameContainer.innerHTML = '';
+    gameContainer.innerHTML += `
+        <div class="end_game justify-content-center align-items-center">
+            <h2 class="final_message text-white"></h2>
+        </div>
+    `;
     gameContainer.classList.add('borders_fix');    
     fillingGameUp(userDifficultyChoice);
     
@@ -130,7 +137,7 @@ function fillingGameUp (userDifficulty){
         }
         gameContainer.appendChild(currentBox);
         currentBox.innerHTML = numbersToUse[i];
-        currentBox.addEventListener('click', makeThemBlue);
+        currentBox.addEventListener('click', makeThemBlue);   
     }
 
     const bombsQuantity = 16;
@@ -150,6 +157,8 @@ function fillingGameUp (userDifficulty){
             if(parseInt(document.getElementsByClassName('box')[i].innerText) === deadlyNumbersList[j]){
                 document.getElementsByClassName('box')[i].classList.add('wrong_box')
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
+                    document.querySelector(`.end_game`).classList.add('active');
+                    document.querySelector(`.final_message`).innerHTML = `Game Over!`
                     for(let k = 0; k < deadlyNumbersList.length; k++){
                         document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
                     }
@@ -213,4 +222,5 @@ function deadlyNumbers (maxNumbersRange, quantityOfBombs){
     }
     return deadlyBoxes;
 }
-  
+
+

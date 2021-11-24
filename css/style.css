@@ -67,6 +67,17 @@ main{
 .box.deadly{
     background-color: red;
 }
+.end_game{
+    display: none;
+    width: 300px;
+    height: 300px;
+    z-index: 3000;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .75);
+}
+.end_game.active{
+    display: flex;
+}
 
 /* FOOTER */
 
@@ -93,6 +104,10 @@ main{
 /* Fix per il wrapper del gioco */
 @media screen and (min-height: 750px){
     .game_wrapper{
+        width: 600px;
+        height: 600px;
+    }
+    .end_game{
         width: 600px;
         height: 600px;
     }
