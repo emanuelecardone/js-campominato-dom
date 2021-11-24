@@ -110,7 +110,7 @@ playButton.addEventListener('click', function(){
 function fillingGameUp (userDifficulty){
 
     let clicksCounter = 0;
-
+    
     let numberOfBoxes;
     switch(userDifficulty){
         case `easy`:
@@ -143,6 +143,7 @@ function fillingGameUp (userDifficulty){
         currentBox.innerHTML = numbersToUse[i];
         currentBox.addEventListener('click', makeThemBlue);
         currentBox.addEventListener('click', function(){
+
             clicksCounter++;
             console.log(clicksCounter);
             this.style.pointerEvents = "none";
@@ -166,6 +167,7 @@ function fillingGameUp (userDifficulty){
             if(parseInt(document.getElementsByClassName('box')[i].innerText) === deadlyNumbersList[j]){
                 document.getElementsByClassName('box')[i].classList.add('wrong_box')
                 document.getElementsByClassName('box')[i].addEventListener('click', function(){
+                    clicksCounter--;
                     document.querySelector(`.end_game`).classList.add('active');
                     document.querySelector(`.final_message`).innerHTML = `Game Over!`;
                     document.querySelector(`.final_message_score`).innerHTML = clicksCounter;
