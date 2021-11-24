@@ -187,11 +187,12 @@ function fillingGameUp (userDifficulty){
     // Se il ciclo "j" trova un box corrispondende, gli assegno l'evento del click
     // Ciclo "l": Debug, se il gioco finisce perché si clicka un "deadly", gli altri non saranno più clickabili
     // Ciclo "k": Ciclo necessario per passare la classe "deadly" (colore rosso) a tutti i box con numeri "deadly" al click di uno di loro
+     // Ciclo "p": Ciclo necessario per passare la classe "safe" (colore blu) a tutti i box con numeri "safe" al click di un deadly
     for(let i = 0; i < numberOfBoxes; i++){
         
         // Do una classe safe_box di default che mi servirà dopo per far diventare blu tutti i safe al click di un "deadly"
         // Questa classe sarà poi rimossa dai "deadly"
-        document.getElementsByClassName('box')[i].classList.add('safe_box')
+        document.getElementsByClassName('box')[i].classList.add('safe_box');
 
         for(let j = 0; j < deadlyNumbersList.length; j++){
 
@@ -217,7 +218,8 @@ function fillingGameUp (userDifficulty){
                     // Ciclo che colora di rosso tutti i box "deadly" al click di uno di loro (grazie alla classe wrong_box di prima)
                     for(let k = 0; k < deadlyNumbersList.length; k++){
                         document.getElementsByClassName('wrong_box')[k].classList.add('deadly');
-                    }// Ciclo che colora di blu tutti i box "safe" al click di un "deadly" 
+                    }
+                    // Ciclo che colora di blu tutti i box "safe" al click di un "deadly" 
                     for(let p = 0; p < numberOfBoxes - deadlyNumbersList.length; p++){
                         document.getElementsByClassName('safe_box')[p].classList.add('safe');
                     }
