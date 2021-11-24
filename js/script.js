@@ -139,7 +139,8 @@ function fillingGameUp (userDifficulty){
     const deadlyNumbersList = deadlyNumbers(numberOfBoxes, bombsQuantity);
     console.log(deadlyNumbersList);
 
-    // Matrice 
+    // Cicli annidati - spiegazione
+    //
     // Ciclo "i": Ciclo principale, percorre ogni singolo box di gioco
     // Ciclo "j": Ciclo dei numeri "deadly", confronta ogni numero "deadly" con ogni box di gioco
     // Se il ciclo "j" trova un box corrispondende, attivo l'evento del click
