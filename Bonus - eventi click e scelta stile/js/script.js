@@ -128,7 +128,6 @@ rightArrow.addEventListener('click', function(){
     
     // Assegno un colore come span per ogni click
     let sliderColor;
-    console.log(sliderClicks);
     switch(sliderClicks){
         case 0:
             sliderPrevColor = `coral`;
