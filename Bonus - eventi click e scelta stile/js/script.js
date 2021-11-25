@@ -332,6 +332,19 @@ function fillingBoxesUp(userDifficulty){
             numbersArray.push(currentNumber);
         }
     }
+
+    // Ordino i numeri in modo crescente
+    // Deciso di usare lo splice e while prima per rendere questa funzione adattabile a più valori 
+    for(let i = 0; i < numbersAmount; i++){
+        for(let j = 0; j < numbersAmount; j++){
+            if(numbersArray[i] < numbersArray[j]){
+                // Uso lo splice per scambiarli in ordine crescente 
+                //Necessario lo [0] altrimenti lo splice mi ritornerebbe un array e non un singolo numero allo scambio
+                numbersArray[i] = numbersArray.splice(j, 1, numbersArray[i])[0];
+            }
+        }
+    }
+
     return numbersArray;
 }
     
