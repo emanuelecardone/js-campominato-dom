@@ -70,10 +70,16 @@ const gameContainer = document.querySelector('.game_wrapper');
 
 // Numero di colori disponibili
 const colorsAmount = 5;
+// Array contentente il nome dei colori
+const colorsList = [`green`, `blue`, `purple`, `black`, `coral`];
 // Conteggio dei click per il reset alla fine
 let sliderClicks = 0;
 // Evento click left-arrow
 leftArrow.addEventListener('click', function(){
+
+    // Rimuovo la classe del colore precedente
+    pageMain.classList.remove(`slider_${colorsList[sliderClicks]}`);
+    gameContainer.classList.remove(`slider_${colorsList[sliderClicks]}`);
 
     // Il conteggio aumenta ma si resetta all'ultimo
     if(sliderClicks > 0){
@@ -82,43 +88,17 @@ leftArrow.addEventListener('click', function(){
         sliderClicks = colorsAmount - 1;
     }
     
-    // Assegno un colore come span per ogni click
-    let sliderColor;
-    console.log(sliderClicks);
-    switch(sliderClicks){
-        case 0:
-            sliderPrevColor = `blue`;
-            sliderColor = `green`;
-            break;
-        case 1:
-            sliderPrevColor = `purple`;
-            sliderColor = `blue`;
-            break;
-        case 2:
-            sliderPrevColor = `black`;
-            sliderColor = `purple`;
-            break;
-        case 3:
-            sliderPrevColor = `coral`;
-            sliderColor = `black`;
-            break;
-        case 4:
-            sliderPrevColor = `green`;
-            sliderColor = `coral`;
-            break;            
-    }
-    
-    // Assegno la classe del colore successivo
-    pageMain.classList.add(`slider_${sliderColor}`);
-    gameContainer.classList.add(`slider_${sliderColor}`);
-
-    // Rimuovo la classe del colore precedente
-    pageMain.classList.remove(`slider_${sliderPrevColor}`);
-    gameContainer.classList.remove(`slider_${sliderPrevColor}`);
+    // Aggiungo la classe del colore successivo
+    pageMain.classList.add(`slider_${colorsList[sliderClicks]}`);
+    gameContainer.classList.add(`slider_${colorsList[sliderClicks]}`);
     
 });
 // Evento click right-arrow
 rightArrow.addEventListener('click', function(){
+    // Rimuovo la classe del colore precedente
+    pageMain.classList.remove(`slider_${colorsList[sliderClicks]}`);
+    gameContainer.classList.remove(`slider_${colorsList[sliderClicks]}`);
+
     // Il conteggio aumenta ma si resetta all'ultimo
     if(sliderClicks < colorsAmount - 1){
         sliderClicks++;
@@ -126,37 +106,9 @@ rightArrow.addEventListener('click', function(){
         sliderClicks = 0;
     }
     
-    // Assegno un colore come span per ogni click
-    let sliderColor;
-    switch(sliderClicks){
-        case 0:
-            sliderPrevColor = `coral`;
-            sliderColor = `green`;
-            break;
-        case 1:
-            sliderPrevColor = `green`;
-            sliderColor = `blue`;
-            break;
-        case 2:
-            sliderPrevColor = `blue`;
-            sliderColor = `purple`;
-            break;
-        case 3:
-            sliderPrevColor = `purple`;
-            sliderColor = `black`;
-            break;
-        case 4:
-            sliderPrevColor = `black`;
-            sliderColor = `coral`;
-            break;            
-    }
-    
-    // Assegno la classe del colore successivo
-    pageMain.classList.add(`slider_${sliderColor}`);
-    gameContainer.classList.add(`slider_${sliderColor}`);
-    // Rimuovo la classe del colore precedente
-    pageMain.classList.remove(`slider_${sliderPrevColor}`);
-    gameContainer.classList.remove(`slider_${sliderPrevColor}`);
+    // Aggiungo la classe del colore successivo
+    pageMain.classList.add(`slider_${colorsList[sliderClicks]}`);
+    gameContainer.classList.add(`slider_${colorsList[sliderClicks]}`);
 });
 
 // Variabile tasto start
